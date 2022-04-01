@@ -14,7 +14,8 @@ CREATE TABLE Usuario(
     noMeGusta2 text,
     noMeGusta3 text
 ); 
-INSERT INTO Usuario VALUES('hola@gmail.com', 'jesus', 'roche', '8-11-2001', 'm', null, 'Zaragoza', 'contrasena', 'motos', 'coches', 'fulbo', 'tu', 'tu ganga' )
+
+INSERT INTO Usuario VALUES('hola@gmail.com', 'jesus', 'roche', '8-11-2001', 'm', null, 'Zaragoza', 'contrasena', 'motos', 'coches', 'fulbo', 'tu', 'tu ganga' );
 
 CREATE TABLE Mensaje(
     mensaje_id SERIAL NOT NULL,
