@@ -9,7 +9,7 @@ public class user
     public string apellidos { get; set; }
     public DateTime fNacimiento { get; set; }
     public string genero { get; set; }
-    public Bitmap foto { get; set; }
+    public Bytea foto { get; set; }
     public string localidad { get; set; }
     public string hashContrasena { get; set; }
     public string meGusta1 { get; set; }
@@ -19,13 +19,10 @@ public class user
     public string noMeGusta2 { get; set; }
     public string noMeGusta3 { get; set; }
 
-    private const string postgresConfig = "Server=127.0.0.1;User Id=postgres;Password=postgres;Database=postgres;";
     public user(string email)
     {  
         // Consulta BD
-        NpgsqlConnection conn = new NpgsqlConnection(postgresConfig);        // Specify connection options and open an connection
-        
-        conn.Open();
+        NpgsqlConnection conn = dbManager.getDBConnection();
 
         String query = "SELECT * FROM Usuario WHERE email = '" + email + "'";
         NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
@@ -65,7 +62,59 @@ public class user
 
         dr.Close();
         conn.Close();
+        }
+    }
+    
+    public login(string email,string hashContrasena)
+    {  
+        // Consulta BD
+        NpgsqlConnection conn = dbManager.getDBConnection();
+
+        String query = "SELECT * FROM Usuario WHERE email = '" + email + "' AND hashContrasena = '" + hashContrasena + "'";
+        NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
+
+        NpgsqlDataReader dr = cmd.ExecuteReader();
+
+        dr.Read();
+
+        // Asigna valores
+        this.email = dr.GetString(0);
+        this.hashContrasena = dr.GetString(7);
+        dr.Close();
+        conn.Close();
+        }
+    }
+
+    public createUser(user usuario)
+    {
+       // Consulta BD
+        NpgsqlConnection conn = dbManager.getDBConnection();
+
+        String query = "INSERT INTO Usuario VALUES ('"usuario.email"','"user.nombre"','"user.apellidos"', "
+        " '"user.fNacimiento"','"user.genero"','"user.foto"','"user.localidad"','"user.hashContrasena"', "
+        " '"user.meGusta1"','"user.meGusta2"','"user.meGusta3"','"user.noMeGusta1"','"user.noMeGusta2"','"user.noMeGusta3"')";
+        
+        NpgsqlCommand cmd = new NpgsqlCommand(query, conn); 
+
+        // instrucciones de SQL que ejecutan algo en la base de datos, pero que no devuelven un valor.
+        cmd.ExecuteNonQuery();
+
+        conn.Close();
     }
 
 
+    public deleteUser(string email, string hashContrasena)
+    {
+       // Consulta BD
+        NpgsqlConnection conn = dbManager.getDBConnection();
+
+        String query = "DELETE FROM Usuario WHERE email = '" + email + "' AND hashContrasena = '" + hashContrasena + "'";
+        
+        NpgsqlCommand cmd = new NpgsqlCommand(query, conn); 
+
+        // instrucciones de SQL que ejecutan algo en la base de datos, pero que no devuelven un valor.
+        cmd.ExecuteNonQuery();
+
+        conn.Close();
+    }
 }
