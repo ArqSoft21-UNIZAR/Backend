@@ -14,10 +14,9 @@ public class usersController : ControllerBase
 
     // EndPoint para inicios de sesión
     [HttpPost("login")]
-    public string login(string email, string hashContrasena)
-    { 
-
-        return usersLogic.login(email, hashContrasena);
+    public string login([FromBody] UserDTO user)
+    {
+        return usersLogic.login(user.email, user.password);
     }
 
 
