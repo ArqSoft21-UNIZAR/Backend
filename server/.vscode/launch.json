@@ -9,7 +9,6 @@
             "type": "coreclr",
             "request": "attach"
         },
-
         {
             "name": ".NET Core Launch (console)",
             "type": "coreclr",
@@ -42,6 +41,15 @@
             "name": ".NET Core Attach",
             "type": "coreclr",
             "request": "attach"
+        },
+        {
+            "name": "Docker .NET Core Launch",
+            "type": "docker",
+            "request": "launch",
+            "preLaunchTask": "docker-run: debug",
+            "netCore": {
+                "appProject": "${workspaceFolder}/server.csproj"
+            }
         }
     ]
 }
