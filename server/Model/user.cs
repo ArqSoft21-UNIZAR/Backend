@@ -3,13 +3,13 @@ using Npgsql;
 using System.Drawing;
 
 public class user
-{ 
+{
     public string email { get; set; }
     public string nombre { get; set; }
     public string apellidos { get; set; }
     public DateTime fNacimiento { get; set; }
     public string genero { get; set; }
-    public Bytea foto { get; set; }
+    public Byte[] foto { get; set; }
     public string localidad { get; set; }
     public string hashContrasena { get; set; }
     public string meGusta1 { get; set; }
@@ -62,10 +62,9 @@ public class user
 
         dr.Close();
         conn.Close();
-        }
     }
-    
-    public login(string email,string hashContrasena)
+   
+    public void login(string email,string hashContrasena)
     {  
         // Consulta BD
         NpgsqlConnection conn = dbManager.getDBConnection();
@@ -82,17 +81,16 @@ public class user
         this.hashContrasena = dr.GetString(7);
         dr.Close();
         conn.Close();
-        }
     }
 
-    public createUser(user usuario)
+    public void createUser(user usuario)
     {
        // Consulta BD
         NpgsqlConnection conn = dbManager.getDBConnection();
 
-        String query = "INSERT INTO Usuario VALUES ('"usuario.email"','"user.nombre"','"user.apellidos"', "
-        " '"user.fNacimiento"','"user.genero"','"user.foto"','"user.localidad"','"user.hashContrasena"', "
-        " '"user.meGusta1"','"user.meGusta2"','"user.meGusta3"','"user.noMeGusta1"','"user.noMeGusta2"','"user.noMeGusta3"')";
+        String query = "INSERT INTO Usuario VALUES ('"+usuario.email+"','"+usuario.nombre+"','"+usuario.apellidos+"', "+
+        " '"+usuario.fNacimiento+"','"+usuario.genero+"','"+usuario.foto+"','"+usuario.localidad+"','"+usuario.hashContrasena+"', "+
+        " '"+usuario.meGusta1+"','"+usuario.meGusta2+"','"+usuario.meGusta3+"','"+usuario.noMeGusta1+"','"+usuario.noMeGusta2+"','"+usuario.noMeGusta3+"')";
         
         NpgsqlCommand cmd = new NpgsqlCommand(query, conn); 
 
@@ -103,7 +101,7 @@ public class user
     }
 
 
-    public deleteUser(string email, string hashContrasena)
+    public void deleteUser(string email, string hashContrasena)
     {
        // Consulta BD
         NpgsqlConnection conn = dbManager.getDBConnection();
