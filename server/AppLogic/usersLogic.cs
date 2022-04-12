@@ -23,5 +23,25 @@ public class usersLogic
         }
     }
 
+    public static void register(string email, string hashContrasena)
+    {
+
+    }
+
+    public static void deleteUser(string email, string hashContrasena)
+    {
+        
+    }
+
+    public static void edit(string nombre, int edad, int sexo, string localidad)
+    {
+        
+    }
+
+    public static void getProfile(string email)
+    {
+        
+    }
+
     
 }
