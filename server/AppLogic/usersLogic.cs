@@ -1,25 +1,26 @@
+using Microsoft.AspNetCore.Mvc;
+
 namespace AppLogic.usersLogic;
 
 public class usersLogic
 {
-    public static string login(string email, string hashContrasena)
+    public static int login(string email, string hashContrasena)
     {
         Model.user realUser = new Model.user(email);
-        Console.Write(realUser.fNacimiento);
         
         if(realUser != null){
             // Usuario existe
             if(realUser.hashContrasena == hashContrasena){
                 // Contrasenas coinciden
-                return "Ok";
+                return 0;
             }
             else{
                 // Contrasenas no coinciden
-                return "Contrasena incorrecta";
+                return 1;
             }
         }
         else{
-            return "Usuario no existe";
+            return 2;
         }
     }
 

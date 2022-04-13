@@ -14,10 +14,19 @@ public class usersController : ControllerBase
 
     // EndPoint para inicios de sesión
     [HttpPost("login")]
-    public void login(string email, string hashContrasena)
+    public IActionResult login([FromBody] UserVO user)
     {
-        usersLogic.login(email, hashContrasena);
-        return;
+        switch (usersLogic.login(user.email, user.password))
+        {
+            case 0:
+                return Ok();
+            case 1:
+                return BadRequest(new {message="Contraseña incorrecta", code=1});
+            case 2:
+                return NotFound();
+            default:
+                return BadRequest(new {message="Error inesperado", code=-1});
+        }
     }
 
     // EndPoint para registros

@@ -20,67 +20,83 @@ public class user
     public string noMeGusta3 { get; set; }
 
     public user(string email)
-    {  
-        // Consulta BD
-        NpgsqlConnection conn = dbManager.getDBConnection();
+    {
+        try
+        {
+            // Consulta BD
+            NpgsqlConnection conn = dbManager.getDBConnection();
 
-        String query = "SELECT * FROM Usuario WHERE email = '" + email + "'";
-        NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
+            String query = "SELECT * FROM Usuario WHERE email = '" + email + "'";
+            NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
 
-        NpgsqlDataReader dr = cmd.ExecuteReader();
+            NpgsqlDataReader dr = cmd.ExecuteReader();
 
-        dr.Read();
+            dr.Read();
 
-        // Asigna valores
-        this.email = dr.GetString(0);
-        this.nombre = dr.GetString(1);
-        this.apellidos = dr.GetString(2);
-        this.fNacimiento = dr.GetDateTime(3);
-        this.genero = dr.GetString(4);
-        if (!dr.IsDBNull(5)){
-            //this.foto = dr.getBytes(5); // NO ESTOY SEGURO DE QUE SEA GETBYTES!!!!!!!!!!!!
+            // Asigna valores
+            this.email = dr.GetString(0);
+            this.nombre = dr.GetString(1);
+            this.apellidos = dr.GetString(2);
+            this.fNacimiento = dr.GetDateTime(3);
+            this.genero = dr.GetString(4);
+            if (!dr.IsDBNull(5)){
+                //this.foto = dr.getBytes(5); // NO ESTOY SEGURO DE QUE SEA GETBYTES!!!!!!!!!!!!
+            }
+            this.localidad = dr.GetString(6);
+            this.hashContrasena = dr.GetString(7);
+
+            this.meGusta1 = dr.GetString(8);
+            if (!dr.IsDBNull(9)){
+                this.meGusta2 = dr.GetString(9);
+            }
+            if (!dr.IsDBNull(12)){
+                this.meGusta3 = dr.GetString(10);
+            }
+
+            this.noMeGusta1 = dr.GetString(11);
+            if (!dr.IsDBNull(12)){
+                this.noMeGusta2 = dr.GetString(12);
+            }
+            
+            if (!dr.IsDBNull(13)){
+                this.noMeGusta3 = dr.GetString(13);
+            }
+
+            dr.Close();
+            conn.Close();
         }
-        this.localidad = dr.GetString(6);
-        this.hashContrasena = dr.GetString(7);
+        catch (System.Exception)
+        {
 
-        this.meGusta1 = dr.GetString(8);
-        if (!dr.IsDBNull(9)){
-            this.meGusta2 = dr.GetString(9);
         }
-        if (!dr.IsDBNull(12)){
-            this.meGusta3 = dr.GetString(10);
-        }
-
-        this.noMeGusta1 = dr.GetString(11);
-        if (!dr.IsDBNull(12)){
-            this.noMeGusta2 = dr.GetString(12);
-        }
-        
-        if (!dr.IsDBNull(13)){
-            this.noMeGusta3 = dr.GetString(13);
-        }
-
-        dr.Close();
-        conn.Close();
     }
    
     public void login(string email,string hashContrasena)
-    {  
-        // Consulta BD
-        NpgsqlConnection conn = dbManager.getDBConnection();
+    {
+        try
+        {
+            // Consulta BD
+            NpgsqlConnection conn = dbManager.getDBConnection();
 
-        String query = "SELECT * FROM Usuario WHERE email = '" + email + "' AND hashContrasena = '" + hashContrasena + "'";
-        NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
+            String query = "SELECT * FROM Usuario WHERE email = '" + email + "' AND hashContrasena = '" + hashContrasena + "'";
+            NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
+            NpgsqlDataReader dr = cmd.ExecuteReader();
 
-        NpgsqlDataReader dr = cmd.ExecuteReader();
+            dr.Read();
 
-        dr.Read();
+            // Asigna valores
+            this.email = dr.GetString(0);
+            this.hashContrasena = dr.GetString(7);
+            dr.Close();
+            conn.Close();
+        }
+        catch (System.Exception)
+        {
+            this.email = null;
+            this.hashContrasena = null;
+        }
 
-        // Asigna valores
-        this.email = dr.GetString(0);
-        this.hashContrasena = dr.GetString(7);
-        dr.Close();
-        conn.Close();
+        
     }
 
     public void createUser(user usuario)
