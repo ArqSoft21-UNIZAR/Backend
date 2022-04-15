@@ -15,8 +15,9 @@ public class UserVO
     public string noMeGusta1 { get; set; }
     public string noMeGusta2 { get; set; }
     public string noMeGusta3 { get; set; }
+    public string foto { get; set; }//Temporal
     
-    public UserVO(string email, string password, string nombre="", string apellidos="", string sexo="", int edad=18, string localidad="", string meGusta1="", string meGusta2="", string meGusta3="", string noMeGusta1="", string noMeGusta2="", string noMeGusta3="") {
+    public UserVO(string email, string password="", string nombre="", string apellidos="", string sexo="", int edad=18, string localidad="", string meGusta1="", string meGusta2="", string meGusta3="", string noMeGusta1="", string noMeGusta2="", string noMeGusta3="") {
         this.email = email;
         this.password = password;
         this.nombre = nombre;
@@ -30,5 +31,6 @@ public class UserVO
         this.noMeGusta1 = noMeGusta1;
         this.noMeGusta2 = noMeGusta2;
         this.noMeGusta3 = noMeGusta3;
+        this.foto = "";
     }
 }

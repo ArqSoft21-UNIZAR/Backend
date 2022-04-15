@@ -31,34 +31,50 @@ public class usersController : ControllerBase
 
     // EndPoint para registros
     [HttpPost("register")]
-    public void register(string email, string hashContrasena)
+    public IActionResult register([FromBody] UserVO user)
     {
-        usersLogic.register(email, hashContrasena);
-        return;
+        if (usersLogic.register(user))
+        {
+            return Ok();
+        }
+        //TODO: Gestion del error Usuario ya existe como en login 
+        return BadRequest();
     }
 
     // Borrar usuario
-    [HttpPost("deleteUser")]
-    public void deleteUser(string email, string hashContrasena)
-    { 
-        usersLogic.deleteUser(email, hashContrasena);
-        return;
+    [HttpPost("delete")]
+    public IActionResult delete([FromBody] UserVO user)
+    {
+        if (usersLogic.delete(user.email, user.password))
+        {
+            return Ok();
+        }
+        return NotFound();
     }
 
     // Editar perfil
     [HttpPost("edit")]
-    public void edit(string nombre, int edad, int sexo, string localidad)
+    public IActionResult edit([FromBody] UserVO user)
     { 
-        usersLogic.edit(nombre, edad, sexo, localidad);
-        return;
+        if (usersLogic.edit(user.email, user.nombre, user.apellidos, user.edad, user.sexo, user.localidad))
+        {
+            return Ok();
+        }
+        return BadRequest();
     }
 
     // Obtiene información de otro perfil
-    [HttpPost("getProfile")]
-    public void getProfile(string email)
-    { 
-        usersLogic.getProfile(email);
-        return;
+    [HttpPost("get")]
+    public IActionResult get([FromBody] UserVO user)
+    {
+        try
+        {
+            return Ok(usersLogic.get(user.email));
+        }
+        catch (System.Exception)
+        {
+            return NotFound();
+        }
     }
 
 }
