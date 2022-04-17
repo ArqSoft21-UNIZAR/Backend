@@ -8,9 +8,8 @@ public class dbManager
     static private string postgresConfig = "User ID=" + Environment.GetEnvironmentVariable("DATABASE_USER") +
                                            ";Password=" + Environment.GetEnvironmentVariable("DATABASE_PASSWORD") + 
                                            ";Host=" + Environment.GetEnvironmentVariable("DATABASE_HOST") + 
-                                           ";Port=" + Environment.GetEnvironmentVariable("DATABASE_PORT") + 
                                            ";Database=" + Environment.GetEnvironmentVariable("DATABASE_ID") + 
-                                           ";Pooling=true;UseSslStream=false;TrustServerCertificate=True";
+                                           ";Pooling=true;TrustServerCertificate=True";
 
     public static NpgsqlConnection getDBConnection()
     {

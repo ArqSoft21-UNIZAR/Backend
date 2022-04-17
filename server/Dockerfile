@@ -1,23 +1,23 @@
-FROM mcr.microsoft.com/dotnet/aspnet:6.0-focal AS base
-RUN useradd -M dotnetUser
+# Dockerfile
+
+FROM mcr.microsoft.com/dotnet/sdk:6.0-focal AS build-env
 WORKDIR /app
 
-# Creates a non-root user with an explicit UID and adds permission to access the /app folder
-# For more info, please refer to https://aka.ms/vscode-docker-dotnet-configure-container
+# Copy csproj and restore as distinct layers
+COPY *.csproj ./
+RUN dotnet restore
 
-FROM mcr.microsoft.com/dotnet/sdk:6.0-focal AS build
-WORKDIR /src
-COPY ["server.csproj", "./"]
-RUN dotnet restore "server.csproj"
+# Copy everything else and build
 COPY . .
-WORKDIR "/src/."
-RUN dotnet build "server.csproj" -c Release -o /app/build
+RUN dotnet publish -c Release -o out
 
-FROM build AS publish
-RUN dotnet publish "server.csproj" -c Release -o /app/publish /p:UseAppHost=false
-
-FROM base AS final
+# Build runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:6.0-focal
 WORKDIR /app
-COPY --from=publish /app/publish .
-USER dotnetUser
-CMD dotnet server.dll --urls=http://+:$PORT
+COPY --from=build-env /app/out .
+
+# Run the app on container startup
+# Use your project name for the second parameter
+# e.g. MyProject.dll
+# ENTRYPOINT [ "dotnet", "meetme-b.dll" ]
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet server.dll
