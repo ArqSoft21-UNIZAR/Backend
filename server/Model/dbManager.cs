@@ -10,7 +10,7 @@ public class dbManager
                                            ";Host=" + Environment.GetEnvironmentVariable("DATABASE_HOST") + 
                                            ";Port=" + Environment.GetEnvironmentVariable("DATABASE_PORT") + 
                                            ";Database=" + Environment.GetEnvironmentVariable("DATABASE_ID") + 
-                                           ";Pooling=true;TrustServerCertificate=True";
+                                           ";Pooling=true;UseSslStream=false;TrustServerCertificate=True";
 
     public static NpgsqlConnection getDBConnection()
     {
