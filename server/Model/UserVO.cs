@@ -6,8 +6,8 @@ public class UserVO
     public string password { get; set; }
     public string nombre { get; set; }
     public string apellidos { get; set; }
+    public DateTime fNacimiento { get; set; }
     public string sexo { get; set; }
-    public int edad { get; set; }
     public string localidad { get; set; }
     public string meGusta1 { get; set; }
     public string meGusta2 { get; set; }
@@ -17,13 +17,13 @@ public class UserVO
     public string noMeGusta3 { get; set; }
     public string foto { get; set; }//Temporal
     
-    public UserVO(string email, string password="", string nombre="", string apellidos="", string sexo="", int edad=18, string localidad="", string meGusta1="", string meGusta2="", string meGusta3="", string noMeGusta1="", string noMeGusta2="", string noMeGusta3="") {
+    public UserVO(string email, DateTime fNacimiento, string password="", string nombre="", string apellidos="", string sexo="", string localidad="", string meGusta1="", string meGusta2="", string meGusta3="", string noMeGusta1="", string noMeGusta2="", string noMeGusta3="") {
         this.email = email;
         this.password = password;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.sexo = sexo;
-        this.edad = edad;
+        this.fNacimiento = fNacimiento;
         this.localidad = localidad;
         this.meGusta1 = meGusta1;
         this.meGusta2 = meGusta2;

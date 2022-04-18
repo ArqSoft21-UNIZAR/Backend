@@ -20,7 +20,7 @@ public class userService
 
             dr.Read();
             
-            UserVO output = new UserVO(dr.GetString(0),dr.GetString(7),dr.GetString(1),dr.GetString(2),dr.GetString(4),dr.GetInt32(3),dr.GetString(6),dr.GetString(8),"","",dr.GetString(11),"","");
+            UserVO output = new UserVO(dr.GetString(0),dr.GetDateTime(3),dr.GetString(7),dr.GetString(1),dr.GetString(2),dr.GetString(4),dr.GetString(6),dr.GetString(8),"","",dr.GetString(11),"","");
 
             dr.Close();
 
@@ -37,7 +37,7 @@ public class userService
         try
         {
             String query = "INSERT INTO Usuario VALUES ('"+usuario.email+"','"+usuario.nombre+"','"+usuario.apellidos+"',"+
-            ""+usuario.edad+",'"+usuario.sexo+"','"+usuario.foto+"','"+usuario.localidad+"','"+usuario.password+"',"+
+            ""+usuario.fNacimiento+",'"+usuario.sexo+"','"+usuario.foto+"','"+usuario.localidad+"','"+usuario.password+"',"+
             "'"+usuario.meGusta1+"','"+usuario.meGusta2+"','"+usuario.meGusta3+"','"+usuario.noMeGusta1+"','"+usuario.noMeGusta2+"','"+usuario.noMeGusta3+"')";
 
             NpgsqlCommand cmd = new NpgsqlCommand(query, conn); 
@@ -58,6 +58,35 @@ public class userService
         {
             String query = "DELETE FROM Usuario WHERE email = '" + email + "' AND hashContrasena = '" + password + "'";
             
+            NpgsqlCommand cmd = new NpgsqlCommand(query, conn); 
+
+            cmd.ExecuteNonQuery(); // instrucciones de SQL que ejecutan algo en la base de datos, pero que no devuelven un valor.
+            return true;
+        }
+        catch (System.Exception)
+        {
+            return false;
+        }
+    }
+
+    public bool editUser(UserVO usuario) {
+        try
+        {
+            String query = "UPDATE Usuario SET email = '"+usuario.email+"',"+
+                                              "nombre = '"+usuario.nombre+"',"+
+                                              "apellidos = '"+usuario.apellidos+"',"+
+                                              "fNacimiento = "+usuario.fNacimiento+","+
+                                              "genero = '"+usuario.sexo+"',"+
+                                              "foto = '"+usuario.foto+"',"+
+                                              "localidad = '"+usuario.localidad+"',"+
+                                              "hashContrasena = '"+usuario.password+"',"+
+                                              "meGusta1 = '"+usuario.meGusta1+"',"+
+                                              "meGusta2 = '"+usuario.meGusta2+"',"+
+                                              "meGusta3 = '"+usuario.meGusta3+"',"+
+                                              "noMeGusta1 = '"+usuario.noMeGusta1+"',"+
+                                              "noMeGusta2 = '"+usuario.noMeGusta2+"',"+
+                                              "noMeGusta3 = '"+usuario.noMeGusta3+"';";
+
             NpgsqlCommand cmd = new NpgsqlCommand(query, conn); 
 
             cmd.ExecuteNonQuery(); // instrucciones de SQL que ejecutan algo en la base de datos, pero que no devuelven un valor.

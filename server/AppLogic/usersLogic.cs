@@ -42,7 +42,7 @@ public class usersLogic
     }
 
 
-    public static bool edit(string email, string nombre, string apellidos, string sexo, int edad, string localidad, string meGusta1, string meGusta2, string meGusta3, string noMeGusta1, string noMeGusta2, string noMeGusta3)
+    public static bool edit(string email, string nombre, string apellidos, string sexo, DateTime fNacimiento, string localidad, string meGusta1, string meGusta2, string meGusta3, string noMeGusta1, string noMeGusta2, string noMeGusta3)
     {
         try
         {
@@ -51,7 +51,7 @@ public class usersLogic
             user.nombre = nombre;
             user.apellidos = apellidos;
             user.sexo = sexo;
-            user.edad = edad;
+            user.fNacimiento = fNacimiento;
             user.localidad = localidad;
             user.meGusta1 = meGusta1;
             user.meGusta2 = meGusta2;
@@ -60,8 +60,10 @@ public class usersLogic
             user.noMeGusta2 = noMeGusta2;
             user.noMeGusta3 = noMeGusta3;
 
-            service.deleteUser(user.email, user.password); //TODO: esto es una chapuza ¿metodo update en userService?
-            service.createUser(user);
+            // service.deleteUser(user.email, user.password); //TODO: esto es una chapuza ¿metodo update en userService?
+            // service.createUser(user);
+
+            service.editUser(user);
             return true;
         }
         catch (System.Exception)

@@ -56,7 +56,7 @@ public class usersController : ControllerBase
     [HttpPost("edit")]
     public IActionResult edit([FromBody] UserVO user)
     { 
-        if (usersLogic.edit(user.email, user.nombre, user.apellidos, user.sexo, user.edad, user.localidad, user.meGusta1, user.meGusta2, user.meGusta3, user.noMeGusta1, user.noMeGusta2, user.noMeGusta3))
+        if (usersLogic.edit(user.email, user.nombre, user.apellidos, user.sexo, user.fNacimiento, user.localidad, user.meGusta1, user.meGusta2, user.meGusta3, user.noMeGusta1, user.noMeGusta2, user.noMeGusta3))
         {
             return Ok();
         }

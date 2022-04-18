@@ -3,7 +3,7 @@ CREATE TABLE Usuario(
     email text PRIMARY KEY NOT NULL,
     nombre text NOT NULL,
     apellidos text NOT NULL,
-    fNacimiento smallint NOT NULL,
+    fNacimiento DATE NOT NULL,
     genero text NOT NULL,
     foto bytea,
     localidad text NOT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE Usuario(
     noMeGusta3 text
 ); 
 
-INSERT INTO Usuario VALUES('hola@gmail.com', 'jesus', 'roche', 18, 'Hombre', null, 'Zaragoza', 'contrasena', 'motos', 'coches', 'fulbo', 'tu', 'tu ganga' );
+INSERT INTO Usuario VALUES('hola@gmail.com', 'jesus', 'roche', 2004-01-01, 'Hombre', null, 'Zaragoza', 'contrasena', 'motos', 'coches', 'fulbo', 'tu', 'tu ganga' );
 
 DROP TABLE Mensaje CASCADE;
 CREATE TABLE Mensaje(
