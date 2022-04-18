@@ -42,7 +42,7 @@ public class usersLogic
     }
 
 
-    public static bool edit(string email, string nombre, string apellidos, int edad, string sexo, string localidad)
+    public static bool edit(string email, string nombre, string apellidos, string sexo, int edad, string localidad, string meGusta1, string meGusta2, string meGusta3, string noMeGusta1, string noMeGusta2, string noMeGusta3)
     {
         try
         {
@@ -50,10 +50,15 @@ public class usersLogic
 
             user.nombre = nombre;
             user.apellidos = apellidos;
-            user.edad = edad;
             user.sexo = sexo;
+            user.edad = edad;
             user.localidad = localidad;
-            //TODO: Poder modificar mas parametros
+            user.meGusta1 = meGusta1;
+            user.meGusta2 = meGusta2;
+            user.meGusta3 = meGusta3;
+            user.noMeGusta1 = noMeGusta1;
+            user.noMeGusta2 = noMeGusta2;
+            user.noMeGusta3 = noMeGusta3;
 
             service.deleteUser(user.email, user.password); //TODO: esto es una chapuza ¿metodo update en userService?
             service.createUser(user);
