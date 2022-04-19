@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json;
 
 public class UserVO
 {
@@ -17,6 +18,24 @@ public class UserVO
     public string noMeGusta3 { get; set; }
     public string foto { get; set; }//Temporal
     
+    [JsonConstructor]
+    public UserVO(string email, string fNacimiento="", string password="", string nombre="", string apellidos="", string sexo="", string localidad="", string meGusta1="", string meGusta2="", string meGusta3="", string noMeGusta1="", string noMeGusta2="", string noMeGusta3="") {
+        this.email = email;
+        this.password = password;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.sexo = sexo;
+        this.fNacimiento = (fNacimiento!=null ? DateTime.ParseExact(fNacimiento, "yyyy-MM-dd", null) : new DateTime());
+        this.localidad = localidad;
+        this.meGusta1 = meGusta1;
+        this.meGusta2 = meGusta2;
+        this.meGusta3 = meGusta3;
+        this.noMeGusta1 = noMeGusta1;
+        this.noMeGusta2 = noMeGusta2;
+        this.noMeGusta3 = noMeGusta3;
+        this.foto = "";
+    }
+
     public UserVO(string email, DateTime fNacimiento, string password="", string nombre="", string apellidos="", string sexo="", string localidad="", string meGusta1="", string meGusta2="", string meGusta3="", string noMeGusta1="", string noMeGusta2="", string noMeGusta3="") {
         this.email = email;
         this.password = password;
