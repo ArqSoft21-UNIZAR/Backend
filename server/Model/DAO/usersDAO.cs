@@ -2,10 +2,10 @@ using Npgsql;
 
 namespace Model;
 
-public class userService
+public class usersDAO
 {
     public NpgsqlConnection conn;
-    public userService()
+    public usersDAO()
     {
         conn = dbManager.getDBConnection();
     }

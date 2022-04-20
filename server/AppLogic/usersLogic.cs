@@ -5,7 +5,7 @@ namespace AppLogic.usersLogic;
 
 public class usersLogic
 {
-    static userService service = new userService();
+    static usersDAO service = new usersDAO();
 
 
     public static int login(string email, string password)
@@ -59,7 +59,7 @@ public class usersLogic
             user.noMeGusta3 = noMeGusta3;
 
             // service.editUser(user);
-            service.deleteUser(user.email, user.password); //TODO: esto es una chapuza ¿metodo update en userService?
+            service.deleteUser(user.email, user.password); //TODO: esto es una chapuza ¿metodo update en usersDAO?
             service.createUser(user);
 
             return true;
