@@ -24,7 +24,7 @@ public class usersController : ControllerBase
             case 1:
                 return BadRequest(new {message="Contraseña incorrecta", code=1});
             case 2:
-                return NotFound();
+                return BadRequest(new {message="Usuario no existe", code=2});
             default:
                 return BadRequest(new {message="Error inesperado", code=-1});
         }
