@@ -50,8 +50,6 @@ public class usersLogic
 
             user.nombre = nombre;
             user.apellidos = apellidos;
-            user.sexo = sexo;
-            user.fNacimiento = fNacimiento;
             user.localidad = localidad;
             user.meGusta1 = meGusta1;
             user.meGusta2 = meGusta2;
@@ -60,10 +58,10 @@ public class usersLogic
             user.noMeGusta2 = noMeGusta2;
             user.noMeGusta3 = noMeGusta3;
 
-            // service.deleteUser(user.email, user.password); //TODO: esto es una chapuza ¿metodo update en userService?
-            // service.createUser(user);
+            // service.editUser(user);
+            service.deleteUser(user.email, user.password); //TODO: esto es una chapuza ¿metodo update en userService?
+            service.createUser(user);
 
-            service.editUser(user);
             return true;
         }
         catch (System.Exception)
