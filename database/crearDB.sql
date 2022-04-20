@@ -16,7 +16,7 @@ CREATE TABLE Usuario(
     noMeGusta3 text
 ); 
 
-INSERT INTO Usuario VALUES('hola@gmail.com', 'jesus', 'roche', 2004-01-01, 'Hombre', null, 'Zaragoza', 'contrasena', 'motos', 'coches', 'fulbo', 'tu', 'tu ganga' );
+INSERT INTO Usuario VALUES('hola@gmail.com', 'jesus', 'roche', '2004-01-01', 'Hombre', null, 'Zaragoza', 'contrasena', 'motos', 'coches', 'fulbo', 'tu', 'tu ganga' );
 
 DROP TABLE Mensaje CASCADE;
 CREATE TABLE Mensaje(
