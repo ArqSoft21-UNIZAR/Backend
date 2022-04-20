@@ -52,7 +52,6 @@ public class UserVO
         this.noMeGusta3 = noMeGusta3;
         this.foto = "";
     }
-
     
     override public String ToString() {
         return "UserVO ("+  this.email+","+
@@ -70,4 +69,4 @@ public class UserVO
                             this.noMeGusta3+","+
                             this.foto+")";
     }
-}   
+}
