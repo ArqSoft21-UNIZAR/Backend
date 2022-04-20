@@ -17,6 +17,7 @@ public class usersController : ControllerBase
     [HttpPost("login")]
     public IActionResult login([FromBody] UserVO user)
     {
+        Console.Write("Ejecutado login con user = "+user.ToString());
         switch (usersLogic.login(user.email, user.password))
         {
             case 0:
@@ -34,6 +35,7 @@ public class usersController : ControllerBase
     [HttpPost("register")]
     public IActionResult register([FromBody] UserVO user)
     {
+        Console.Write("Ejecutado register con user = "+user.ToString());
         if (usersLogic.register(user))
         {
             return Ok();
@@ -46,6 +48,7 @@ public class usersController : ControllerBase
     [HttpPost("delete")]
     public IActionResult delete([FromBody] UserVO user)
     {
+        Console.Write("Ejecutado delete con user = "+user.ToString());
         if (usersLogic.delete(user.email, user.password))
         {
             return Ok();
@@ -57,6 +60,7 @@ public class usersController : ControllerBase
     [HttpPost("edit")]
     public IActionResult edit([FromBody] UserVO user)
     { 
+        Console.Write("Ejecutado edit con user = "+user.ToString());
         if (usersLogic.edit(user.email, user.nombre, user.apellidos, user.sexo, user.fNacimiento, user.localidad, user.meGusta1, user.meGusta2, user.meGusta3, user.noMeGusta1, user.noMeGusta2, user.noMeGusta3))
         {
             return Ok();
@@ -68,6 +72,7 @@ public class usersController : ControllerBase
     [HttpPost("get")]
     public IActionResult get([FromBody] UserVO user)
     {
+        Console.Write("Ejecutado get con user = "+user.ToString());
         try
         {
             return Ok(usersLogic.get(user.email));

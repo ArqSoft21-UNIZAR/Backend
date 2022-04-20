@@ -52,4 +52,22 @@ public class UserVO
         this.noMeGusta3 = noMeGusta3;
         this.foto = "";
     }
-}
+
+    
+    override public String ToString() {
+        return "UserVO ("+  this.email+","+
+                            this.password+","+
+                            this.nombre+","+
+                            this.apellidos+","+
+                            this.sexo+","+
+                            this.localidad+","+
+                            this.fNacimiento+","+
+                            this.meGusta1+","+
+                            this.meGusta2+","+
+                            this.meGusta3+","+
+                            this.noMeGusta1+","+
+                            this.noMeGusta2+","+
+                            this.noMeGusta3+","+
+                            this.foto+")";
+    }
+}   
