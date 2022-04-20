@@ -5,7 +5,7 @@ namespace AppLogic.usersLogic;
 
 public class usersLogic
 {
-    static userService service = new userService();
+    static userDAO service = new userDAO();
 
 
     public static int login(string email, string password)
