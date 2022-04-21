@@ -36,12 +36,17 @@ public class usersController : ControllerBase
     public IActionResult register([FromBody] UserVO user)
     {
         Console.Write("Ejecutado register con user = "+user.ToString()+"\n");
-        if (usersLogic.register(user))
+        switch (usersLogic.register(user))
         {
-            return Ok();
+            case 0:
+                return Ok();
+            case 1:
+                return BadRequest(new {message="Usuario ya existe", code=1});
+            case 2:
+                return BadRequest(new {message="Error registrando un nuevo usuario", code=2});
+            default:
+                return BadRequest(new {message="Error inesperado", code=-1});
         }
-        //TODO: Gestion del error Usuario ya existe como en login 
-        return BadRequest();
     }
 
     // Borrar usuario
