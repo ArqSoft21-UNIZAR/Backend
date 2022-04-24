@@ -7,7 +7,9 @@ namespace sever.Controllers
     {  
         public async Task NewMessage(Message msg)
         {
-            await Clients.All.SendAsync("MessageReceived", msg);  
+            Console.Write("Mensaje:", msg.message, " sender: ",msg.sender, " reciever: ", msg.reciever);
+            await Clients.All.SendAsync(msg.reciever, msg);
+            //TODO: Guardar el mensaje en chatsController.
         }  
-    }  
+    }
 }

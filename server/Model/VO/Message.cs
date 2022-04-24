@@ -1,7 +1,8 @@
 public class Message  
 {  
-    public string clientuniqueid { get; set; }  
-    public string type { get; set; }  
+    public string sender { get; set; }  
+    public string reciever { get; set; }  
+    public bool isSent { get; set; }  
     public string message { get; set; }  
     public DateTime date { get; set; }  
 }  
