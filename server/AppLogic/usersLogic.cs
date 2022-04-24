@@ -30,9 +30,20 @@ public class usersLogic
     }
 
 
-    public static bool register(UserVO user)
+    public static int register(UserVO user)
     {
-        return service.createUser(user);
+        if (service.createUser(user)) {
+            return 0;
+        }
+        else {
+            try {
+                service.getUser(user.email);
+                return 1; //Ya existe un usuario
+            }
+            catch (System.Exception) {
+                return 2; //No se pudo crear el usuario
+            }
+        }
     }
 
 

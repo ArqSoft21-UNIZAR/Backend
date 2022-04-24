@@ -36,6 +36,8 @@ CREATE TABLE Plan(
     plan_id SERIAL NOT NULL,
     lugar text NOT NULL,
     descripcion text NOT NULL,
+    lat int NOT NULL,
+    lon int NOT NULL,
     predefinido boolean NOT NULL,
     PRIMARY KEY(plan_id)
 ); 

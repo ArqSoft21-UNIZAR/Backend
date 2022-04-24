@@ -1,0 +1,2 @@
+echo "Desplegando base de datos..."
+heroku pg:psql --app meetme-b < crearDB.sql
