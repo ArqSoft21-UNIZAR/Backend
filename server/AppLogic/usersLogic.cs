@@ -40,7 +40,8 @@ public class usersLogic
                 service.getUser(user.email);
                 return 1; //Ya existe un usuario
             }
-            catch (System.Exception) {
+            catch (System.Exception e) {
+                Console.Write(e);
                 return 2; //No se pudo crear el usuario
             }
         }

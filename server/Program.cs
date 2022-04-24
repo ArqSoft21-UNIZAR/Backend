@@ -11,7 +11,7 @@ builder.Services.AddCors(opt =>
                 builder.WithOrigins("https://meetme-arqsoft.herokuapp.com")
                     .AllowAnyHeader()
                     .AllowAnyMethod()
-                    .AllowCredentials();;
+                    .AllowCredentials();
             });
         });
 
