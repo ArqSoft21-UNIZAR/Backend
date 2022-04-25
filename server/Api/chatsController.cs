@@ -17,13 +17,6 @@ public class chatsController : ControllerBase
         chatsLogic.getChats(email);
         return;
     }
-
-    [HttpPost("sendMessage")]
-    public void sendMessage(string email_send, string email_recieve, string message)
-    { 
-        chatsLogic.sendMessage(email_send, email_recieve, message);
-        return;
-    }
 }
 
 

@@ -27,9 +27,13 @@ CREATE TABLE Mensaje(
     tStamp timestamp NOT NULL,
     PRIMARY KEY(mensaje_id),
     FOREIGN KEY(emisor_id) REFERENCES Usuario(email),
-    FOREIGN KEY(receptor_id) REFERENCES Usuario(email),
-    CHECK (emisor_id != receptor_id)
+    FOREIGN KEY(receptor_id) REFERENCES Usuario(email) --aqui iria una ,
+    -- CHECK (emisor_id != receptor_id)
 ); 
+
+INSERT INTO Mensaje VALUES(DEFAULT,'hola@gmail.com','hola@gmail.com','cuerpo del mensaje','1999-01-08 04:05:06');
+INSERT INTO Mensaje VALUES(DEFAULT,'hola@gmail.com','hola@gmail.com','cuerpo del mensaje2','1999-01-08 04:05:06');
+SELECT * FROM Mensaje;
 
 DROP TABLE Plan CASCADE;
 CREATE TABLE Plan( 
