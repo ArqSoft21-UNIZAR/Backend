@@ -15,10 +15,10 @@ public class usersController : ControllerBase
 
     // EndPoint para inicios de sesión
     [HttpPost("login")]
-    public IActionResult login([FromBody] UserVO user)
+    public async Task<IActionResult> login([FromBody] UserVO user)
     {
         Console.Write("Ejecutado login con user = "+user.ToString()+"\n");
-        switch (usersLogic.login(user.email, user.password))
+        switch (await usersLogic.login(user.email, user.password))
         {
             case 0:
                 return Ok();
@@ -33,10 +33,10 @@ public class usersController : ControllerBase
 
     // EndPoint para registros
     [HttpPost("register")]
-    public IActionResult register([FromBody] UserVO user)
+    public async Task<IActionResult> register([FromBody] UserVO user)
     {
         Console.Write("Ejecutado register con user = "+user.ToString()+"\n");
-        switch (usersLogic.register(user))
+        switch (await usersLogic.register(user))
         {
             case 0:
                 return Ok();
@@ -51,10 +51,10 @@ public class usersController : ControllerBase
 
     // Borrar usuario
     [HttpPost("delete")]
-    public IActionResult delete([FromBody] UserVO user)
+    public async Task<IActionResult> delete([FromBody] UserVO user)
     {
         Console.Write("Ejecutado delete con user = "+user.ToString()+"\n");
-        if (usersLogic.delete(user.email, user.password))
+        if (await usersLogic.delete(user.email, user.password))
         {
             return Ok();
         }
@@ -63,10 +63,10 @@ public class usersController : ControllerBase
 
     // Editar perfil
     [HttpPost("edit")]
-    public IActionResult edit([FromBody] UserVO user)
+    public async Task<IActionResult> edit([FromBody] UserVO user)
     { 
         Console.Write("Ejecutado edit con user = "+user.ToString()+"\n");
-        if (usersLogic.edit(user.email, user.nombre, user.apellidos, user.sexo, user.fNacimiento, user.localidad, user.meGusta1, user.meGusta2, user.meGusta3, user.noMeGusta1, user.noMeGusta2, user.noMeGusta3))
+        if (await usersLogic.edit(user.email, user.nombre, user.apellidos, user.sexo, user.fNacimiento, user.localidad, user.meGusta1, user.meGusta2, user.meGusta3, user.noMeGusta1, user.noMeGusta2, user.noMeGusta3))
         {
             return Ok();
         }
@@ -75,12 +75,12 @@ public class usersController : ControllerBase
 
     // Obtiene información de otro perfil
     [HttpPost("get")]
-    public IActionResult get([FromBody] UserVO user)
+    public async Task<IActionResult> get([FromBody] UserVO user)
     {
         Console.Write("Ejecutado get con user = "+user.ToString()+"\n");
         try
         {
-            return Ok(usersLogic.get(user.email));
+            return Ok(await usersLogic.get(user.email));
         }
         catch (System.Exception)
         {

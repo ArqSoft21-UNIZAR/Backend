@@ -8,11 +8,11 @@ public class usersLogic
     static usersDAO service = new usersDAO();
 
 
-    public static int login(string email, string password)
+    public static async Task<int> login(string email, string password)
     {
         try
         {
-            UserVO data = service.getUser(email);
+            UserVO data = await service.getUser(email);
             if (data.password==password) {
                 // Contrasenas coinciden
                 return 0;
@@ -30,34 +30,35 @@ public class usersLogic
     }
 
 
-    public static int register(UserVO user)
+    public static async Task<int> register(UserVO user)
     {
-        if (service.createUser(user)) {
+        if (await service.createUser(user)) {
             return 0;
         }
         else {
             try {
-                service.getUser(user.email);
+                await service.getUser(user.email);
                 return 1; //Ya existe un usuario
             }
-            catch (System.Exception) {
+            catch (System.Exception e) {
+                Console.Write(e);
                 return 2; //No se pudo crear el usuario
             }
         }
     }
 
 
-    public static bool delete(string email, string password)
+    public static async Task<bool> delete(string email, string password)
     {
-        return service.deleteUser(email,password);
+        return await service.deleteUser(email,password);
     }
 
 
-    public static bool edit(string email, string nombre, string apellidos, string sexo, DateTime fNacimiento, string localidad, string meGusta1, string meGusta2, string meGusta3, string noMeGusta1, string noMeGusta2, string noMeGusta3)
+    public static async Task<bool> edit(string email, string nombre, string apellidos, string sexo, DateTime fNacimiento, string localidad, string meGusta1, string meGusta2, string meGusta3, string noMeGusta1, string noMeGusta2, string noMeGusta3)
     {
         try
         {
-            UserVO user = service.getUser(email);
+            UserVO user = await service.getUser(email);
 
             user.nombre = nombre;
             user.apellidos = apellidos;
@@ -70,8 +71,8 @@ public class usersLogic
             user.noMeGusta3 = noMeGusta3;
 
             // service.editUser(user);
-            service.deleteUser(user.email, user.password); //TODO: esto es una chapuza ¿metodo update en usersDAO?
-            service.createUser(user);
+            await service.deleteUser(user.email, user.password); //TODO: esto es una chapuza ¿metodo update en usersDAO?
+            await service.createUser(user);
 
             return true;
         }
@@ -81,8 +82,8 @@ public class usersLogic
         }
     }
 
-    public static UserVO get(string email)
+    public static async Task<UserVO> get(string email)
     {
-        return service.getUser(email);
+        return await service.getUser(email);
     }
 }

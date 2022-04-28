@@ -27,8 +27,8 @@ CREATE TABLE Mensaje(
     tStamp timestamp NOT NULL,
     PRIMARY KEY(mensaje_id),
     FOREIGN KEY(emisor_id) REFERENCES Usuario(email),
-    FOREIGN KEY(receptor_id) REFERENCES Usuario(email),
-    CHECK (emisor_id != receptor_id)
+    FOREIGN KEY(receptor_id) REFERENCES Usuario(email) --aqui iria una ,
+    -- CHECK (emisor_id != receptor_id)
 ); 
 
 DROP TABLE Plan CASCADE;

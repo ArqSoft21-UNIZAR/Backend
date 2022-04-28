@@ -10,14 +10,17 @@ public class usersDAO
         conn = dbManager.getDBConnection();
     }
 
+    public void Dispose() => conn.Close();
 
-    public UserVO getUser(string email)
+
+    public async Task<UserVO> getUser(string email)
     {
         try {
+            
             String query = "SELECT * FROM Usuario WHERE email = '" + email + "'";
 
             NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
-            NpgsqlDataReader dr = cmd.ExecuteReader();
+            NpgsqlDataReader dr = await cmd.ExecuteReaderAsync();
             dr.Read();
             UserVO output = new UserVO(dr.GetString(0),dr.GetDateTime(3),dr.GetString(7),dr.GetString(1),dr.GetString(2),dr.GetString(4),dr.GetString(6),dr.GetString(8),"","",dr.GetString(11),"","");
 
@@ -31,7 +34,7 @@ public class usersDAO
     }
 
 
-    public bool createUser(UserVO usuario)
+    public async Task<bool> createUser(UserVO usuario)
     {
         try
         {
@@ -41,7 +44,7 @@ public class usersDAO
 
             NpgsqlCommand cmd = new NpgsqlCommand(query, conn); 
 
-            cmd.ExecuteNonQuery(); // instrucciones de SQL que ejecutan algo en la base de datos, pero que no devuelven un valor.
+            await cmd.ExecuteNonQueryAsync(); // instrucciones de SQL que ejecutan algo en la base de datos, pero que no devuelven un valor.
             return true;
         }
         catch (System.Exception)
@@ -51,7 +54,7 @@ public class usersDAO
     }
 
 
-    public bool deleteUser(string email, string password)
+    public async Task<bool> deleteUser(string email, string password)
     {
         try
         {
@@ -59,7 +62,7 @@ public class usersDAO
             
             NpgsqlCommand cmd = new NpgsqlCommand(query, conn); 
 
-            cmd.ExecuteNonQuery(); // instrucciones de SQL que ejecutan algo en la base de datos, pero que no devuelven un valor.
+            await cmd.ExecuteNonQueryAsync(); // instrucciones de SQL que ejecutan algo en la base de datos, pero que no devuelven un valor.
             return true;
         }
         catch (System.Exception)
@@ -68,7 +71,7 @@ public class usersDAO
         }
     }
 
-    public bool editUser(UserVO usuario) {
+    public async Task<bool> editUser(UserVO usuario) {
         try
         {
             String query = "UPDATE Usuario SET foto = '"+usuario.foto+"',"+
@@ -82,7 +85,7 @@ public class usersDAO
             
             NpgsqlCommand cmd = new NpgsqlCommand(query, conn); 
 
-            cmd.ExecuteNonQuery(); // instrucciones de SQL que ejecutan algo en la base de datos, pero que no devuelven un valor.
+            await cmd.ExecuteNonQueryAsync(); // instrucciones de SQL que ejecutan algo en la base de datos, pero que no devuelven un valor.
             return true;
         }
         catch (System.Exception)

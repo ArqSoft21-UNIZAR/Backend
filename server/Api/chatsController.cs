@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
 using AppLogic.chatsLogic;
 
@@ -11,18 +12,10 @@ public class chatsController : ControllerBase
 
     }
 
-    [HttpPost("getChats")]
-    public void checkStatus(string email)
-    { 
-        chatsLogic.getChats(email);
-        return;
-    }
-
-    [HttpPost("sendMessage")]
-    public void sendMessage(string email_send, string email_recieve, string message)
-    { 
-        chatsLogic.sendMessage(email_send, email_recieve, message);
-        return;
+    [HttpPost("get")]
+    public async Task<ChatVO> getChat([FromBody] ChatVO chat)
+    {
+        return await chatsLogic.getChat(chat.emisor, chat.receptor);
     }
 }
 

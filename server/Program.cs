@@ -8,10 +8,10 @@ builder.Services.AddCors(opt =>
         {
             opt.AddDefaultPolicy(builder =>
             {
-                builder.WithOrigins("https://meetme-arqsoft.herokuapp.com")
+                builder.WithOrigins("https://meetme-arqsoft.herokuapp.com","http://localhost:4200") //TODO: Borrar localhost al final del proyecto
                     .AllowAnyHeader()
                     .AllowAnyMethod()
-                    .AllowCredentials();;
+                    .AllowCredentials();
             });
         });
 
