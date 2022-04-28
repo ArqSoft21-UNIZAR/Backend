@@ -31,10 +31,6 @@ CREATE TABLE Mensaje(
     -- CHECK (emisor_id != receptor_id)
 ); 
 
-INSERT INTO Mensaje VALUES(DEFAULT,'hola@gmail.com','hola@gmail.com','cuerpo del mensaje','1999-01-08 04:05:06');
-INSERT INTO Mensaje VALUES(DEFAULT,'hola@gmail.com','hola@gmail.com','cuerpo del mensaje2','1999-01-08 04:05:06');
-SELECT * FROM Mensaje;
-
 DROP TABLE Plan CASCADE;
 CREATE TABLE Plan( 
     plan_id SERIAL NOT NULL,

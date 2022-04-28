@@ -7,12 +7,14 @@ namespace sever.Controllers
     public class MessageHub : Hub
     {
 
-        public async Task NewMessage(Message msg)
+        public async Task<bool> NewMessage(Message msg)
         {
             Console.Write("Mensaje:", msg.message, " sender: ",msg.sender, " reciever: ", msg.reciever);
-            if(chatsLogic.saveMessage(msg)) {
+            if(await chatsLogic.saveMessage(msg)) {
                 await Clients.All.SendAsync(msg.reciever, msg);
+                return true;
             }
+            return false;
         }
     }
 }

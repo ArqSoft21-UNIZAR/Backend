@@ -6,13 +6,22 @@ public class chatsLogic
 {
     static chatsDAO service = new chatsDAO();
 
-    public static void getChats(string email)
-    {
 
+    public static async Task<ChatVO> getChat(string emisor, string receptor)
+    {
+        ChatVO output = new ChatVO(emisor,receptor);
+        
+        foreach (Message m in await service.GetMessages(emisor,receptor))
+        {
+            output.addMsg(m);
+        }
+
+        return output;
     }
 
-    public static bool saveMessage(Message m)
+    public static async Task<bool> saveMessage(Message m)
     {
-        return service.saveMessage(m.sender,m.reciever,m.message,m.date);
+        bool output = await service.saveMessage(m.sender,m.reciever,m.message,m.date);
+        return output;
     }
 }
