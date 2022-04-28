@@ -13,7 +13,7 @@ public class dbManager
 
     public static NpgsqlConnection getDBConnection()
     {
-        NpgsqlConnection conn = new NpgsqlConnection("Server=127.0.0.1;User Id=postgres;Password=postgres;Database=postgres;");
+        NpgsqlConnection conn = new NpgsqlConnection(postgresConfig);
         //PARA PRUEBAS LOCALES: "Server=127.0.0.1;User Id=postgres;Password=postgres;Database=postgres;"
         conn.Open();
         return conn;
