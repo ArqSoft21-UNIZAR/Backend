@@ -34,7 +34,7 @@ public class datesDAO
             NpgsqlDataReader dr = await cmd.ExecuteReaderAsync();
             dr.Read();
             
-            PlanVO output = new PlanVO(dr.GetString(1),dr.GetString(2),dr.GetInt32(3),dr.GetInt32(4));
+            PlanVO output = new PlanVO(dr.GetString(1),dr.GetString(2),dr.GetDouble(3),dr.GetDouble(4));
 
             dr.Close();
 

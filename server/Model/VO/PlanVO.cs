@@ -4,14 +4,14 @@ using Newtonsoft.Json;
 
 public class PlanVO
 {
-    public int lat;
-    public int lon;
+    public double lat;
+    public double lon;
     public string donde;
     public string plan;
     
 
     [JsonConstructor]
-    public PlanVO(String lugar, String descripcion, int lat, int lon) {
+    public PlanVO(String lugar, String descripcion, double lat, double lon) {
         this.donde = lugar;
         this.plan = descripcion;
         this.lat = lat;

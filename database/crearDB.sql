@@ -38,11 +38,13 @@ CREATE TABLE Plan(
     plan_id SERIAL NOT NULL,
     lugar text NOT NULL,
     descripcion text NOT NULL,
-    lat int NOT NULL,
-    lon int NOT NULL,
+    lat double precision NOT NULL,
+    lon double precision NOT NULL,
     predefinido boolean NOT NULL,
     PRIMARY KEY(plan_id)
-); 
+);
+INSERT INTO Plan VALUES(DEFAULT,'prueba 1','descripcion1',-133263.715064198,5123313.679615129,true);
+INSERT INTO Plan VALUES(DEFAULT,'prueba 2','descripcion2',-416129.0660885878,4917269.41422883,true);
 
 DROP TABLE Cita CASCADE;
 CREATE TABLE Cita(
