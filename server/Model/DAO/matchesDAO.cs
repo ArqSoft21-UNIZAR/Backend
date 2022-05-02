@@ -23,7 +23,7 @@ public class matchesDAO
         try {
             
             String query;
-            if(email1 < email2){
+            if(string.Compare(email1,email2)>=0){
                 query = "INSERT INTO Match VALUES ('" + email1 + "','" + email2 + "')";
             } 
             else{
@@ -45,7 +45,7 @@ public class matchesDAO
         try {
             
             String query;
-            if(email1 < email2){
+            if(string.Compare(email1,email2)>=0){
                 query = "SELECT FROM Match WHERE usuario1 = '" + email1 + "' and usuario2 = '" + email2 + "'";
             } 
             else{

@@ -10,7 +10,7 @@ public class matchesLogic
     static usersDAO service = new usersDAO();
 
     // Cola de espera
-    static ArrayList<UserVO> listaEspera = new ArrayList<UserVO>();
+    static ArrayList listaEspera = new ArrayList();
     private static Semaphore nuevaSolicitud = new Semaphore(0, 5);
 
     // Gestion de threads
@@ -28,8 +28,8 @@ public class matchesLogic
                 working = true;
             }
             
-            UserVO user = service.getUser(email);
-            listaEspera.add(user);
+            UserVO user = await service.getUser(email);
+            listaEspera.Add(user);
             nuevaSolicitud.Release();
         }
         catch(Exception e){
@@ -55,12 +55,14 @@ public class matchesLogic
 
     // llama a model para crear el nuevo match
     private static bool nuevoMatch(UserVO u1, UserVO u2){
-        
+        //TODO
+        return false;
     }
 
     //comprueba si dos usuarios pueden matchear
     private static bool canMatch(){
-        
+        //TODO
+        return false;
     }
 
 

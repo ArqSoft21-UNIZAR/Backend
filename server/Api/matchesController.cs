@@ -1,6 +1,6 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
-using AppLogic.chatsLogic;
+using AppLogic.matchesLogic;
 
 namespace sever.Controllers;
 
@@ -15,7 +15,7 @@ public class matchesController : ControllerBase
     [HttpPost("get")]
     public async Task<IActionResult> requestMatch([FromBody] UserVO user)
     {
-        if (await matchesController.requestMatch(user.email)){
+        if (await matchesLogic.requestMatch(user.email)){
             return Ok();
         }
         else{
