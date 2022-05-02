@@ -11,6 +11,5 @@ public class Message
         this.reciever = reciever;
         this.message = message;
         this.date = date;
-
     }
 }

@@ -12,14 +12,6 @@ public class datesController : ControllerBase
     }
 
 
-    [HttpPost("acceptCita")]
-    public void acceptCita(string email_send, string email_recieve)
-    { 
-        datesLogic.acceptCita(email_send, email_recieve);
-        return;
-    }
-
-
     [HttpPost("suggestPlan")]
     public void suggestPlan(string email_send, string email_recieve)
     { 
@@ -36,11 +28,10 @@ public class datesController : ControllerBase
     }
 
 
-    [HttpPost("sendPlan")]
-    public void sendPlan(string email_send, string email_recieve)
+    [HttpPost("getDefault")]
+    public async Task<IActionResult> getDefault()
     { 
-        datesLogic.sendPlan(email_send, email_recieve);
-        return;
+        return Ok(await datesLogic.getDefaultPlan());
     }
 
 
@@ -52,10 +43,10 @@ public class datesController : ControllerBase
     }
 
 
-    [HttpPost("sendFecha")]
-    public void sendFecha(string email_send, string email_recieve, string moment)
+    [HttpPost("suggestFecha")]
+    public void suggestFecha(string email_send, string email_recieve, string moment)
     { 
-        datesLogic.sendFecha(email_send, email_recieve, moment);
+        datesLogic.suggestFecha(email_send, email_recieve, moment);
         return;
     }
 

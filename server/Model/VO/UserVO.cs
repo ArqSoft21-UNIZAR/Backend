@@ -17,9 +17,11 @@ public class UserVO
     public string noMeGusta2 { get; set; }
     public string noMeGusta3 { get; set; }
     public string foto { get; set; }//Temporal
-    
+    public string orientacion { get; set; }
+    public int capacidad { get; set; }
+
     [JsonConstructor]
-    public UserVO(string email, string fNacimiento="", string password="", string nombre="", string apellidos="", string sexo="", string localidad="", string meGusta1="", string meGusta2="", string meGusta3="", string noMeGusta1="", string noMeGusta2="", string noMeGusta3="") {
+    public UserVO(string email, string fNacimiento="", string password="", string nombre="", string apellidos="", string sexo="", string localidad="", string meGusta1="", string meGusta2="", string meGusta3="", string noMeGusta1="", string noMeGusta2="", string noMeGusta3="", string orientacion="Ambos", int capacidad=2) {
         this.email = email;
         this.password = password;
         this.nombre = nombre;
@@ -34,9 +36,11 @@ public class UserVO
         this.noMeGusta2 = noMeGusta2;
         this.noMeGusta3 = noMeGusta3;
         this.foto = "";
+        this.orientacion = orientacion;
+        this.capacidad = capacidad;
     }
 
-    public UserVO(string email, DateTime fNacimiento, string password="", string nombre="", string apellidos="", string sexo="", string localidad="", string meGusta1="", string meGusta2="", string meGusta3="", string noMeGusta1="", string noMeGusta2="", string noMeGusta3="") {
+    public UserVO(string email, DateTime fNacimiento, string password="", string nombre="", string apellidos="", string sexo="", string localidad="", string meGusta1="", string meGusta2="", string meGusta3="", string noMeGusta1="", string noMeGusta2="", string noMeGusta3="", string orientacion="Ambos", int capacidad=2) {
         this.email = email;
         this.password = password;
         this.nombre = nombre;
@@ -51,6 +55,8 @@ public class UserVO
         this.noMeGusta2 = noMeGusta2;
         this.noMeGusta3 = noMeGusta3;
         this.foto = "";
+        this.orientacion = orientacion;
+        this.capacidad = capacidad;
     }
     
     override public String ToString() {
@@ -67,6 +73,8 @@ public class UserVO
                             this.noMeGusta1+","+
                             this.noMeGusta2+","+
                             this.noMeGusta3+","+
-                            this.foto+")";
+                            this.foto+","+
+                            this.orientacion+","+
+                            this.capacidad+")";
     }
 }

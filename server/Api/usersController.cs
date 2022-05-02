@@ -66,7 +66,7 @@ public class usersController : ControllerBase
     public async Task<IActionResult> edit([FromBody] UserVO user)
     { 
         Console.Write("Ejecutado edit con user = "+user.ToString()+"\n");
-        if (await usersLogic.edit(user.email, user.nombre, user.apellidos, user.sexo, user.fNacimiento, user.localidad, user.meGusta1, user.meGusta2, user.meGusta3, user.noMeGusta1, user.noMeGusta2, user.noMeGusta3))
+        if (await usersLogic.edit(user.email, user.nombre, user.apellidos, user.sexo, user.fNacimiento, user.localidad, user.meGusta1, user.meGusta2, user.meGusta3, user.noMeGusta1, user.noMeGusta2, user.noMeGusta3,user.orientacion,user.capacidad))
         {
             return Ok();
         }

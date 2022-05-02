@@ -13,10 +13,12 @@ CREATE TABLE Usuario(
     meGusta3 text,
     noMeGusta1 text NOT NULL,
     noMeGusta2 text,
-    noMeGusta3 text
+    noMeGusta3 text,
+    orientacion text,
+    capacidad int
 ); 
 
-INSERT INTO Usuario VALUES('hola@gmail.com', 'jesus', 'roche', '2004-01-01', 'Hombre', null, 'Zaragoza', 'contrasena', 'motos', 'coches', 'fulbo', 'tu', 'tu ganga' );
+INSERT INTO Usuario VALUES('hola@gmail.com', 'jesus', 'roche', '2004-01-01', 'Hombre', null, 'Zaragoza', 'contrasena', 'motos', 'coches', 'fulbo', 'tu', 'tu ganga', 'test', 'Mujeres', 2 );
 
 DROP TABLE Mensaje CASCADE;
 CREATE TABLE Mensaje(
@@ -36,11 +38,13 @@ CREATE TABLE Plan(
     plan_id SERIAL NOT NULL,
     lugar text NOT NULL,
     descripcion text NOT NULL,
-    lat int NOT NULL,
-    lon int NOT NULL,
+    lat double precision NOT NULL,
+    lon double precision NOT NULL,
     predefinido boolean NOT NULL,
     PRIMARY KEY(plan_id)
-); 
+);
+INSERT INTO Plan VALUES(DEFAULT,'prueba 1','descripcion1',-133263.715064198,5123313.679615129,true);
+INSERT INTO Plan VALUES(DEFAULT,'prueba 2','descripcion2',-416129.0660885878,4917269.41422883,true);
 
 DROP TABLE Cita CASCADE;
 CREATE TABLE Cita(
