@@ -40,7 +40,8 @@ public class usersDAO
         {
             String query = "INSERT INTO Usuario VALUES ('"+usuario.email+"','"+usuario.nombre+"','"+usuario.apellidos+"','"+
             usuario.fNacimiento.ToString("yyyy-MM-dd")+"','"+usuario.sexo+"','"+usuario.foto+"','"+usuario.localidad+"','"+usuario.password+"','"+
-            usuario.meGusta1+"','"+usuario.meGusta2+"','"+usuario.meGusta3+"','"+usuario.noMeGusta1+"','"+usuario.noMeGusta2+"','"+usuario.noMeGusta3+"')";
+            usuario.meGusta1+"','"+usuario.meGusta2+"','"+usuario.meGusta3+"','"+usuario.noMeGusta1+"','"+usuario.noMeGusta2+"','"+usuario.noMeGusta3+"','"+
+            usuario.orientacion+"',"+usuario.capacidad+")";
 
             NpgsqlCommand cmd = new NpgsqlCommand(query, conn); 
 
@@ -81,7 +82,9 @@ public class usersDAO
                                               "meGusta3 = '"+usuario.meGusta3+"',"+
                                               "noMeGusta1 = '"+usuario.noMeGusta1+"',"+
                                               "noMeGusta2 = '"+usuario.noMeGusta2+"',"+
-                                              "noMeGusta3 = '"+usuario.noMeGusta3+"';";
+                                              "noMeGusta3 = '"+usuario.noMeGusta3+"',"+
+                                              "orientacion = '"+usuario.orientacion+"',"+
+                                              "capacidad = "+usuario.capacidad+";";
             
             NpgsqlCommand cmd = new NpgsqlCommand(query, conn); 
 

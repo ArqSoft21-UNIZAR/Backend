@@ -13,10 +13,12 @@ CREATE TABLE Usuario(
     meGusta3 text,
     noMeGusta1 text NOT NULL,
     noMeGusta2 text,
-    noMeGusta3 text
+    noMeGusta3 text,
+    orientacion text,
+    capacidad int
 ); 
 
-INSERT INTO Usuario VALUES('hola@gmail.com', 'jesus', 'roche', '2004-01-01', 'Hombre', null, 'Zaragoza', 'contrasena', 'motos', 'coches', 'fulbo', 'tu', 'tu ganga' );
+INSERT INTO Usuario VALUES('hola@gmail.com', 'jesus', 'roche', '2004-01-01', 'Hombre', null, 'Zaragoza', 'contrasena', 'motos', 'coches', 'fulbo', 'tu', 'tu ganga', 'test', 'Mujeres', 2 );
 
 DROP TABLE Mensaje CASCADE;
 CREATE TABLE Mensaje(

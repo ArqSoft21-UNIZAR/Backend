@@ -54,7 +54,7 @@ public class usersLogic
     }
 
 
-    public static async Task<bool> edit(string email, string nombre, string apellidos, string sexo, DateTime fNacimiento, string localidad, string meGusta1, string meGusta2, string meGusta3, string noMeGusta1, string noMeGusta2, string noMeGusta3)
+    public static async Task<bool> edit(string email, string nombre, string apellidos, string sexo, DateTime fNacimiento, string localidad, string meGusta1, string meGusta2, string meGusta3, string noMeGusta1, string noMeGusta2, string noMeGusta3, string orientacion, int capacidad)
     {
         try
         {
@@ -69,6 +69,8 @@ public class usersLogic
             user.noMeGusta1 = noMeGusta1;
             user.noMeGusta2 = noMeGusta2;
             user.noMeGusta3 = noMeGusta3;
+            user.orientacion = orientacion;
+            user.capacidad = capacidad;
 
             // service.editUser(user);
             await service.deleteUser(user.email, user.password); //TODO: esto es una chapuza ¿metodo update en usersDAO?
