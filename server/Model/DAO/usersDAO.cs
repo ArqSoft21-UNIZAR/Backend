@@ -22,7 +22,7 @@ public class usersDAO
             NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
             NpgsqlDataReader dr = await cmd.ExecuteReaderAsync();
             dr.Read();
-            UserVO output = new UserVO(dr.GetString(0),dr.GetDateTime(3),dr.GetString(7),dr.GetString(1),dr.GetString(2),dr.GetString(4),dr.GetString(6),dr.GetString(8),"","",dr.GetString(11),"","");
+            UserVO output = new UserVO(dr.GetString(0),dr.GetDateTime(3),dr.GetString(7),dr.GetString(1),dr.GetString(2),dr.GetString(4),dr.GetString(6),dr.GetString(8),"","",dr.GetString(11),"","",dr.GetString(14),dr.GetInt32(15));
 
             dr.Close();
 
