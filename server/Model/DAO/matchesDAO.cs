@@ -41,6 +41,28 @@ public class matchesDAO
         }
     }
 
+    public async Task<bool> deleteMatch(string email1,string email2){
+        try {
+            
+            String query;
+            if(string.Compare(email1,email2)>=0){
+                query = "DELETE FROM Match WHERE usuario1 = '" + email1 + "' AND usuario2 = '" + email2 + "')";
+            } 
+            else{
+                query = "DELETE FROM Match WHERE usuario1 = '" + email2 + "' AND usuario2 = '" + email1 + "')";
+            }
+
+            NpgsqlCommand cmd = new NpgsqlCommand(query, conn); 
+
+            await cmd.ExecuteNonQueryAsync(); // instrucciones de SQL que ejecutan algo en la base de datos, pero que no devuelven un valor.
+            
+            return true;
+        }
+        catch (System.Exception) {
+            throw;
+        }
+    }
+
     // Devuelve true si existe un match entre los dos usuarios
     // false si no
     public async Task<bool> findMatch(string email1, string email2){

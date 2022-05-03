@@ -15,7 +15,7 @@ public class matchesController : ControllerBase
     [HttpPost("get")]
     public async Task<IActionResult> requestMatch([FromBody] UserVO user)
     {
-        if (await matchesLogic.requestMatch(user.email)){
+        if (await matchesLogic.requestNewMatch(user.email)){
             return Ok();
         }
         else{
@@ -28,6 +28,17 @@ public class matchesController : ControllerBase
     public async Task<IEnumerable<UserVO>> getMatches([FromBody] UserVO user)
     {
         return await matchesLogic.getMatches(user.email);
+    }
+
+    [HttpPost("get")]
+    public async Task<IActionResult> deleteMatch([FromBody] MatchVO match)
+    {
+        if (await matchesLogic.deleteMatch(match.email1, match.email2)){
+            return Ok();
+        }
+        else{
+            return BadRequest(new {message="Error inesperado", code=-1});
+        }
     }
 }
 

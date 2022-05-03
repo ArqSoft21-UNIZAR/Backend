@@ -1,6 +1,7 @@
 using Model;
 using System.Threading;
 using System.Collections;
+using sever.Controllers;
 
 namespace AppLogic.matchesLogic;
 
@@ -32,8 +33,17 @@ public class matchesLogic
         return res;
     }
 
+    public static async Task<bool> deleteMatch(string email1, string email2){
+        if (await matchService.deleteMatch(email1, email2)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     // Sirve la solicitud de match del usuario con el email del parametro
-    public static async Task<bool> requestMatch(string email)
+    public static async Task<bool> requestNewMatch(string email)
     {
         bool ok = true;
         try{
@@ -88,6 +98,7 @@ public class matchesLogic
         bool res = false;
         if (await canMatch (u1, u2)){
             res = await matchService.addMatch(u1.email, u2.email);
+            //MatchesHub.NewMatch(u1, u2);
         }
         return res;
     }
