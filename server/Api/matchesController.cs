@@ -12,7 +12,7 @@ public class matchesController : ControllerBase
         
     }
 
-    [HttpPost("get")]
+    [HttpPost("request")]
     public async Task<IActionResult> requestMatch([FromBody] UserVO user)
     {
         if (await matchesLogic.requestNewMatch(user.email)){
@@ -30,7 +30,7 @@ public class matchesController : ControllerBase
         return await matchesLogic.getMatches(user.email);
     }
 
-    [HttpPost("get")]
+    [HttpPost("delete")]
     public async Task<IActionResult> deleteMatch([FromBody] MatchVO match)
     {
         if (await matchesLogic.deleteMatch(match.email1, match.email2)){
