@@ -22,6 +22,13 @@ public class matchesController : ControllerBase
             return BadRequest(new {message="Error inesperado", code=-1});
         }
     }
+
+
+    [HttpPost("get")]
+    public async Task<IEnumerable<UserVO>> getMatches([FromBody] UserVO user)
+    {
+        return await matchesLogic.getMatches(user.email);
+    }
 }
 
 
