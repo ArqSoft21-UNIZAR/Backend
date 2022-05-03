@@ -41,6 +41,8 @@ public class matchesDAO
         }
     }
 
+    // Devuelve true si existe un match entre los dos usuarios
+    // false si no
     public async Task<bool> findMatch(string email1, string email2){
         try {
             
@@ -53,10 +55,13 @@ public class matchesDAO
             }
 
             NpgsqlCommand cmd = new NpgsqlCommand(query, conn); 
+            NpgsqlDataReader dr = await cmd.ExecuteReaderAsync();
 
-            await cmd.ExecuteNonQueryAsync(); // instrucciones de SQL que ejecutan algo en la base de datos, pero que no devuelven un valor.
-            
-            return true;
+            bool res = dr.HasRows;
+
+            dr.Close();
+
+            return res;
         }
         catch (System.Exception) {
             throw;
@@ -73,18 +78,15 @@ public class matchesDAO
 
             NpgsqlCommand cmd = new NpgsqlCommand(query1, conn);
             NpgsqlDataReader dr = await cmd.ExecuteReaderAsync();
-
-            while (await dr.ReadAsync(query1)){
-                dr.Read();
+            while (dr.Read()){
                 string match = dr.GetString(0);
+                matchesList.Add(match);
             }
             dr.Close();
 
-            NpgsqlCommand cmd = new NpgsqlCommand(query2, conn);
-            NpgsqlDataReader dr = await cmd.ExecuteReaderAsync();
-
-            while (await dr.ReadAsync(query2)){
-                dr.Read();
+            cmd = new NpgsqlCommand(query2, conn);
+            dr = await cmd.ExecuteReaderAsync();
+            while (dr.Read()){
                 string match = dr.GetString(0);
                 matchesList.Add(match);
                 
@@ -92,7 +94,6 @@ public class matchesDAO
             dr.Close();
 
             return matchesList;
-
         }
         catch (System.Exception) {
             throw;
