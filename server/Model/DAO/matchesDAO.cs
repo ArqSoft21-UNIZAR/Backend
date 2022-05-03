@@ -62,4 +62,40 @@ public class matchesDAO
             throw;
         }
     }
+
+    public async Task<List<string>> getMatches(string email){
+        try{
+            
+            List<string> matchesList = new List<string>(); 
+
+            string query1 = "SELECT usuario2 FROM Match WHERE usuario1 = '" + email + "'";
+            string query2 = "SELECT usuario1 FROM Match WHERE usuario2 = '" + email + "'";
+
+            NpgsqlCommand cmd = new NpgsqlCommand(query1, conn);
+            NpgsqlDataReader dr = await cmd.ExecuteReaderAsync();
+
+            while (await dr.ReadAsync(query1)){
+                dr.Read();
+                string match = dr.GetString(0);
+            }
+            dr.Close();
+
+            NpgsqlCommand cmd = new NpgsqlCommand(query2, conn);
+            NpgsqlDataReader dr = await cmd.ExecuteReaderAsync();
+
+            while (await dr.ReadAsync(query2)){
+                dr.Read();
+                string match = dr.GetString(0);
+                matchesList.Add(match);
+                
+            }
+            dr.Close();
+
+            return matchesList;
+
+        }
+        catch (System.Exception) {
+            throw;
+        }
+    }
 }
