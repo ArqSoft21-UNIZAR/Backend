@@ -46,10 +46,10 @@ public class matchesDAO
             
             String query;
             if(string.Compare(email1,email2)>=0){
-                query = "DELETE FROM Match WHERE usuario1 = '" + email1 + "' AND usuario2 = '" + email2 + "')";
+                query = "DELETE FROM Match WHERE (usuario1 = '" + email1 + "') AND (usuario2 = '" + email2 + "');";
             } 
             else{
-                query = "DELETE FROM Match WHERE usuario1 = '" + email2 + "' AND usuario2 = '" + email1 + "')";
+                query = "DELETE FROM Match WHERE (usuario1 = '" + email2 + "') AND (usuario2 = '" + email1 + "');";
             }
 
             NpgsqlCommand cmd = new NpgsqlCommand(query, conn); 
