@@ -42,7 +42,6 @@ app.UseAuthorization();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapHub<MessageHub>("/MessageHub");
-    endpoints.MapHub<MatchesHub>("/MatchesHub");
 });
 
 
