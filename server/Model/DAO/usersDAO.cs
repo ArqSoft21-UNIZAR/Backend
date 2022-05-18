@@ -59,23 +59,30 @@ public class usersDAO
     {
         try
         {
-            String query = "DELETE FROM Usuario WHERE email = '" + email + "' AND hashContrasena = '" + password + "'";
+            String query = "DELETE FROM Usuario WHERE email = '" + email + "'";
             
             NpgsqlCommand cmd = new NpgsqlCommand(query, conn); 
 
             await cmd.ExecuteNonQueryAsync(); // instrucciones de SQL que ejecutan algo en la base de datos, pero que no devuelven un valor.
             return true;
         }
-        catch (System.Exception)
+        catch (System.Exception e)
         {
+            Console.Write(e.StackTrace);
+            Console.Write(e.ToString());
             return false;
         }
     }
 
     public async Task<bool> editUser(UserVO usuario) {
+
         try
         {
             String query = "UPDATE Usuario SET foto = '"+usuario.foto+"',"+
+                                              "nombre = '" + usuario.nombre+"'," +
+                                              "apellidos = '" + usuario.apellidos+"'," +
+                                              "fNacimiento = '" + usuario.fNacimiento+"'," +
+                                              "genero = '" + usuario.sexo+"'," +
                                               "localidad = '"+usuario.localidad+"',"+
                                               "meGusta1 = '"+usuario.meGusta1+"',"+
                                               "meGusta2 = '"+usuario.meGusta2+"',"+
@@ -84,15 +91,18 @@ public class usersDAO
                                               "noMeGusta2 = '"+usuario.noMeGusta2+"',"+
                                               "noMeGusta3 = '"+usuario.noMeGusta3+"',"+
                                               "orientacion = '"+usuario.orientacion+"',"+
-                                              "capacidad = "+usuario.capacidad+";";
+                                              "capacidad = "+usuario.capacidad +" "+
+                                            "WHERE email = '"+usuario.email+"';";
             
             NpgsqlCommand cmd = new NpgsqlCommand(query, conn); 
 
             await cmd.ExecuteNonQueryAsync(); // instrucciones de SQL que ejecutan algo en la base de datos, pero que no devuelven un valor.
             return true;
         }
-        catch (System.Exception)
+        catch (System.Exception e)
         {
+            Console.Write(e.StackTrace);
+            Console.Write(e.ToString());
             return false;
         }
     }

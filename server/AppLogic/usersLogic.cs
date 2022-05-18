@@ -72,9 +72,9 @@ public class usersLogic
             user.orientacion = orientacion;
             user.capacidad = capacidad;
 
-            // service.editUser(user);
-            await service.deleteUser(user.email, user.password); //TODO: esto es una chapuza ¿metodo update en usersDAO?
-            await service.createUser(user);
+            if(await service.editUser(user)) {
+                Console.Write("Usuario editado para editar "+user.email);
+            }
 
             return true;
         }
